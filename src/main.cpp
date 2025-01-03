@@ -7,7 +7,7 @@ int main(){
     
     const int screenWidth = 800;
     const int screenHeight = 600;
-    Vector2 ballPos = {static_cast<float>(GetRandomValue(4, 700)), static_cast<float>(GetRandomValue(4, 500))};
+    Vector2 ballPos = {static_cast<float>(GetRandomValue(15, 700)), static_cast<float>(GetRandomValue(15, 500))};
     Vector2 ballSpeed = {300.0f, 300.0f};
     int ballRadius = 15;
 
