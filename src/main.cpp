@@ -1,10 +1,13 @@
 #include <raylib.h>
+#include <ctime>
 
 int main(){
+
+    SetRandomSeed(static_cast<unsigned int>(time(nullptr)));
     
     const int screenWidth = 800;
     const int screenHeight = 600;
-    Vector2 ballPos = {100.0f, 100.0f};
+    Vector2 ballPos = {static_cast<float>(GetRandomValue(4, 700)), static_cast<float>(GetRandomValue(4, 500))};
     Vector2 ballSpeed = {300.0f, 300.0f};
     int ballRadius = 15;
 
