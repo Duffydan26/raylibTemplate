@@ -1,8 +1,7 @@
 # Compiler and flags
 CC = g++
-CFLAGS = -O3 -g -Wall -Wextra 
+CFLAGS = -Wall -Wextra
 LIBS = -lraylib -lgdi32 -lwinmm
-
 
 # Project name (based on folder structure)
 PROJECT_NAME = $(WORKSPACE_NAME)
@@ -11,17 +10,28 @@ PROJECT_NAME = $(WORKSPACE_NAME)
 SRC_DIR = src
 BUILD_DIR = build
 
-# Source file and target path
+# Source file and target paths
 SRC = $(SRC_DIR)/main.cpp
-TARGET = $(BUILD_DIR)/$(PROJECT_NAME).exe
+DEBUG_TARGET = $(BUILD_DIR)/$(PROJECT_NAME)_debug.exe
+RELEASE_TARGET = $(BUILD_DIR)/$(PROJECT_NAME).exe
 
 # Create the build directory if it doesn't exist
 $(shell mkdir -p $(BUILD_DIR))
 
-# Build the target
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LIBS)
+# Debug build
+debug: CFLAGS += -O0 -g
+debug: $(DEBUG_TARGET)
+
+$(DEBUG_TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(DEBUG_TARGET) $(LIBS)
+
+# Release build
+release: CFLAGS += -O3
+release: $(RELEASE_TARGET)
+
+$(RELEASE_TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(RELEASE_TARGET) $(LIBS)
 
 # Clean build files
 clean:
-	rm -f $(TARGET)
+	rm -f $(DEBUG_TARGET) $(RELEASE_TARGET)

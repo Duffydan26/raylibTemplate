@@ -14,12 +14,49 @@
             "detail": "Build the Raylib game using Makefile"
         },
         {
+            "label": "build-debug",
+            "type": "shell",
+            "command": "make",
+            "args": ["debug", "WORKSPACE_NAME=${workspaceFolderBasename}"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the debug version of the Raylib game"
+        },
+        {
+            "label": "build-release",
+            "type": "shell",
+            "command": "make",
+            "args": ["release", "WORKSPACE_NAME=${workspaceFolderBasename}"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the release version of the Raylib game"
+        },
+        {
             "label": "run",
             "type": "shell",
-            "command": "./game.exe",
-            "dependsOn": "build game",
+            "command": "./build/${workspaceFolderBasename}.exe",
+            "dependsOn": "build",
             "group": "none",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "detail": "Run the compiled Raylib game"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make",
+            "args": ["clean"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "detail": "Clean the build directory"
         }
     ]
 }
