@@ -12,8 +12,8 @@ BUILD_DIR = build
 
 # Source file and target paths
 SRC = $(SRC_DIR)/main.cpp
-DEBUG_TARGET = $(BUILD_DIR)/$(PROJECT_NAME)_debug.exe
-RELEASE_TARGET = $(BUILD_DIR)/$(PROJECT_NAME).exe
+DEBUG_TARGET = $(BUILD_DIR)/debug/$(PROJECT_NAME)_debug.exe
+RELEASE_TARGET = $(BUILD_DIR)/release$(PROJECT_NAME).exe
 
 # Create the build directory if it doesn't exist
 $(shell mkdir -p $(BUILD_DIR))
