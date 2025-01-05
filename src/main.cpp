@@ -18,10 +18,10 @@ int main() {
     int ballRadius = 15;
 
     while (!WindowShouldClose()) {
-        float dt = GetFrameTime();
+        float Δtime = GetFrameTime(); // Δ is the symbol for delta in mathematics :)
 
-        ballPos.x += ballSpeed.x * dt;
-        ballPos.y += ballSpeed.y * dt;
+        ballPos.x += ballSpeed.x * Δtime;
+        ballPos.y += ballSpeed.y * Δtime;
 
         if (ballPos.x + ballRadius >= screenWidth || ballPos.x - ballRadius <= 0) {
             ballSpeed.x *= -1;
