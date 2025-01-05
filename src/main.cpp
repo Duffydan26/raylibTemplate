@@ -1,8 +1,8 @@
 #include <raylib.h>
 
 Vector2 GetRandomPos() {
-    float x = GetRandomValue(0, GetScreenWidth() - 1);
-    float y = GetRandomValue(0, GetScreenHeight() - 1);
+    float x = static_cast<float>(GetRandomValue(0, GetScreenWidth() - 1));
+    float y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - 1));
     return Vector2{x, y};
 }
 
@@ -15,7 +15,7 @@ int main() {
 
     Vector2 ballPos = GetRandomPos();
     Vector2 ballSpeed = {300.0f, 300.0f};
-    int ballRadius = 15;
+    float ballRadius = 15.0f;
 
     while (!WindowShouldClose()) {
         float Δtime = GetFrameTime(); // Δ is the symbol for delta in mathematics :)
