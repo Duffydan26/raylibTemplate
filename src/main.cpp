@@ -1,39 +1,40 @@
 #include <raylib.h>
-#include <ctime>
 
-int main(){
+Vector2 GetRandomPos() {
+    float x = GetRandomValue(0, GetScreenWidth() - 1);
+    float y = GetRandomValue(0, GetScreenHeight() - 1);
+    return Vector2{x, y};
+}
 
-    SetRandomSeed(static_cast<unsigned int>(time(nullptr)));
-    
+int main() {
     const int screenWidth = 800;
     const int screenHeight = 600;
-    Vector2 ballPos = {static_cast<float>(GetRandomValue(15, 700)), static_cast<float>(GetRandomValue(15, 500))};
+
+    InitWindow(screenWidth, screenHeight, "Bouncing Ball");
+    SetExitKey(KEY_ESCAPE);
+
+    Vector2 ballPos = GetRandomPos();
     Vector2 ballSpeed = {300.0f, 300.0f};
     int ballRadius = 15;
 
-    InitWindow(screenWidth, screenHeight, "Template");
-    SetExitKey(KEY_ESCAPE);
-
-    while (!WindowShouldClose()){
+    while (!WindowShouldClose()) {
         float dt = GetFrameTime();
-
-        BeginDrawing();
-        ClearBackground(BLACK);
 
         ballPos.x += ballSpeed.x * dt;
         ballPos.y += ballSpeed.y * dt;
 
-        if(ballPos.x + ballRadius >= screenWidth || ballPos.x - ballRadius <= 0){
+        if (ballPos.x + ballRadius >= screenWidth || ballPos.x - ballRadius <= 0) {
             ballSpeed.x *= -1;
-        };
-        
-        if(ballPos.y + ballRadius >= screenHeight || ballPos.y - ballRadius <= 0){
-            ballSpeed.y *= -1;
-        };
+        }
 
+        if (ballPos.y + ballRadius >= screenHeight || ballPos.y - ballRadius <= 0) {
+            ballSpeed.y *= -1;
+        }
+
+        BeginDrawing();
+        ClearBackground(BLACK);
         DrawCircleV(ballPos, ballRadius, WHITE);
         EndDrawing();
-        
     }
 
     CloseWindow();
